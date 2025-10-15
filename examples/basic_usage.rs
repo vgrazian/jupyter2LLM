@@ -7,12 +7,18 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
 
     println!("Converting notebook to LLM-optimized text...\n");
 
-    let converter = JupyterConverter::new()
+    // Demonstrate different conversion options
+    println!("=== Basic Conversion ===");
+    let converter_basic = JupyterConverter::new();
+    let result_basic = converter_basic.convert_str(&notebook_content)?;
+    println!("{}", result_basic);
+
+    println!("\n=== LLM-Ready Conversion (with outputs and metadata) ===");
+    let converter_llm = JupyterConverter::new()
         .with_outputs(true)
         .with_metadata(true);
-
-    let result = converter.convert_str(&notebook_content)?;
-    println!("{}", result);
+    let result_llm = converter_llm.convert_str(&notebook_content)?;
+    println!("{}", result_llm);
 
     Ok(())
 }

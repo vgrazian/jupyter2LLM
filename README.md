@@ -9,6 +9,7 @@ A Rust CLI tool that converts Jupyter notebooks to LLM-optimized text format.
 - **LLM-Optimized Output**: Formats content for easy ingestion by language models
 - **Flexible Output**: Can include or exclude cell outputs and metadata
 - **Robust Error Handling**: Comprehensive error handling for malformed notebooks
+- **LLM-Ready Text Files**: Creates formatted text files perfect for copying into LLM interfaces
 
 ## Installation
 
@@ -90,15 +91,29 @@ jupyter2llm notebook.ipynb --include-outputs
 jupyter2llm notebook.ipynb --include-metadata
 ```
 
+### Create LLM-Ready Text File
+
+```bash
+jupyter2llm notebook.ipynb -o llm_input.txt --include-outputs --include-metadata
+```
+
 ### All Options
 
 ```bash
 jupyter2llm notebook.ipynb -o output.txt --include-outputs --include-metadata
 ```
 
+### Copy to Clipboard (macOS)
+
+You can also pipe the output directly to the clipboard on macOS:
+
+```bash
+jupyter2llm notebook.ipynb --include-outputs --include-metadata | pbcopy
+```
+
 ## Output Format
 
-The tool converts notebooks to a structured text format:
+The tool converts notebooks to a structured text format perfect for LLM input:
 
 ```text
 # Jupyter Notebook
@@ -137,6 +152,36 @@ Raw content goes here.
 
 ```
 
+## LLM Integration
+
+### Using the Generated Text File with LLMs
+
+1. **Create the LLM-ready file**:
+   ```bash
+   jupyter2llm my_notebook.ipynb -o llm_context.txt --include-outputs --include-metadata
+   ```
+
+2. **Copy and paste into your LLM interface**:
+   - Open the generated `llm_context.txt` file
+   - Copy the entire content
+   - Paste it into your preferred LLM (ChatGPT, Claude, Gemini, etc.)
+   - Add your prompt at the end
+
+### Example LLM Prompt Structure
+
+After pasting the notebook content, you can add prompts like:
+
+```
+[Pasted notebook content here]
+
+Based on this Jupyter notebook, please:
+
+1. Explain the main purpose of this notebook
+2. Identify any issues or improvements in the code
+3. Suggest additional analyses that could be performed
+4. Summarize the key findings
+```
+
 ## Building and Testing
 
 ### Building the Project
@@ -163,6 +208,9 @@ cargo run -- tests/test_data/sample_notebook.ipynb
 
 # Test with outputs included
 cargo run -- tests/test_data/sample_notebook.ipynb --include-outputs
+
+# Create an LLM-ready test file
+cargo run -- tests/test_data/sample_notebook.ipynb -o test_llm.txt --include-outputs --include-metadata
 ```
 
 ### macOS-Specific Build Notes
@@ -203,6 +251,7 @@ cargo run -- tests/test_data/sample_notebook.ipynb --include-outputs
 - **LLM-Optimized Formatting**: Clear section headers, code blocks, and structured output
 - **Comprehensive Testing**: Unit tests and integration tests with sample data
 - **Command-line Interface**: User-friendly CLI with helpful error messages
+- **LLM Integration Ready**: Creates text files specifically formatted for easy copying into LLM interfaces
 
 The tool provides a clean, structured text output that's perfect for feeding into LLMs while preserving the notebook's structure and content.
 
