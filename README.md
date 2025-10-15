@@ -167,20 +167,119 @@ Raw content goes here.
    - Paste it into your preferred LLM (ChatGPT, Claude, Gemini, etc.)
    - Add your prompt at the end
 
-### Example LLM Prompt Structure
+### Example LLM Prompts
 
-After pasting the notebook content, you can add prompts like:
+After pasting the notebook content, here are practical prompts you can use:
+
+#### #1 - Notebook Analysis & Explanation
 
 ```
 [Pasted notebook content here]
 
 Based on this Jupyter notebook, please:
 
-1. Explain the main purpose of this notebook
-2. Identify any issues or improvements in the code
-3. Suggest additional analyses that could be performed
-4. Summarize the key findings
+1. Explain the main purpose and functionality of this notebook
+2. Summarize what each major section does
+3. Identify the key libraries and techniques used
+4. Describe the expected outputs or results
 ```
+
+#### #2 - Debugging Help
+
+```
+[Pasted notebook content here]
+
+I'm getting an error in Cell #4. The error message is:
+"NameError: name 'df' is not defined"
+
+Please:
+1. Analyze the notebook and identify why this error is occurring
+2. Suggest specific fixes for Cell #4
+3. Explain what changes need to be made in previous cells to prevent this error
+4. Provide corrected code for the problematic cell
+```
+
+#### #3 - Code Improvement & Optimization
+
+```
+[Pasted notebook content here]
+
+Please review this notebook and suggest improvements:
+
+1. Identify any inefficient code or potential bottlenecks
+2. Suggest better Python practices or more efficient libraries
+3. Recommend ways to make the code more readable and maintainable
+4. Point out any potential bugs or edge cases not handled
+```
+
+#### #4 - Educational Explanation
+
+```
+[Pasted notebook content here]
+
+I'm learning data science and want to understand this notebook better:
+
+1. Explain the data science concepts used in this notebook
+2. Break down complex code sections into simpler terms
+3. What prerequisites should I know to understand this notebook?
+4. Suggest related topics I should study next
+```
+
+#### #5 - Error Analysis with Traceback
+
+```
+[Pasted notebook content here]
+
+I'm getting this error traceback in Cell #7:
+
+```
+
+ValueError: could not convert string to float: 'N/A'
+  File "<ipython-input-7-abc123>", line 5, in <module>
+    data = pd.to_numeric(data['column'])
+
+```
+
+Please:
+1. Explain what causes this specific error
+2. Show how to fix the data preprocessing in earlier cells
+3. Provide robust error handling for this scenario
+4. Suggest data validation steps to prevent similar issues
+```
+
+#### #6 - Extension & Enhancement
+
+```
+[Pasted notebook content here]
+
+This notebook analyzes sales data. Please suggest:
+
+1. Additional analyses that could provide more insights
+2. Visualizations that would complement the existing ones
+3. How to extend this analysis to handle more data sources
+4. Potential machine learning models that could be applied
+```
+
+#### #7 - Code Translation
+
+```
+[Pasted notebook content here]
+
+Please convert this Python notebook to:
+
+1. Equivalent R code for data analysis sections
+2. SQL queries for the data manipulation steps
+3. PySpark code for large-scale data processing
+4. JavaScript equivalent for the visualization parts
+```
+
+### Pro Tips for Better LLM Results
+
+1. **Include outputs**: Use `--include-outputs` so the LLM can see actual results and errors
+2. **Include metadata**: Use `--include-metadata` for context about the environment
+3. **Be specific**: Reference cell numbers in your prompts (e.g., "Cell #5")
+4. **Provide error details**: Include exact error messages and tracebacks
+5. **State your goal**: Clearly explain what you want to achieve with the notebook
 
 ## Building and Testing
 
